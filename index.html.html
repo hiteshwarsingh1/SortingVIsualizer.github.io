@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clock</title>
+    <link rel="stylesheet" type="text/css" href="sv.css">
+</head>
+    
+<body>
+    <div class="head">
+        <input type="range" min="10" max="200" value="10" id="slider">
+        <p><span id="demo"></span></p>
+        <button id="bt" class="button" onclick="sort()">Sort</button>
+    </div>
+    <div class="sort">
+    
+    </div>
+    
+    
+<script>
+	var v = document.getElementById("slider");
+	var output = document.getElementById("demo");
+	output.innerHTML = v.value;
+    v.oninput = function (){
+        output.innerHTML= this.value;
+        var x = this.value;
+        var all = document.getElementsByClassName('ar');
+        while (all[0]){
+            all[0].parentNode.removeChild(all[0]);
+        }
+        gen(x);
+    };
+    function gen(n){
+        var i;
+        
+        for (i=0;i<n;i++){
+            var div = document.createElement('div');
+            div.className="ar";
+            document.getElementsByClassName('sort')[0].appendChild(div);
+            
+            console.log(i);
+            
+        }
+        var mm= document.querySelectorAll(".ar");
+        arr=[];
+        for (i=0;i<n;i++){
+            var a = Math.floor(Math.random() * (200 - 50 + 1)) + 50;
+            console.log(a);
+            arr.push(a);
+            mm[i].setAttribute("id", a);
+            mm[i].style.height=a*2.5+"px";
+        }
+        console.log(arr);
+        
+    }
+    function nor(n,m){
+        var mm= document.querySelectorAll(".ar");
+        mm[n].style.backgroundColor="limegreen";
+        mm[m].style.backgroundColor="limegreen";
+
+    }
+    
+    function com(n,m){
+        var mm= document.querySelectorAll(".ar");
+        mm[n].style.backgroundColor="blue";
+        mm[m].style.backgroundColor="blue";
+
+    }
+    function sp(ms){
+        if(ms<20){
+            ms=15;
+        }
+        else if(ms>20 && ms<40){
+            ms=9;
+        }
+        else if(ms>40 && ms<60){
+            ms=8;
+        }
+        else if(ms>60 && ms<80){
+            ms=7;
+        }
+        else if(ms>80 && ms<100){
+            ms=6;
+        }
+        else if(ms>100 && ms<120){
+            ms=5;
+        }
+        else if(ms>120 && ms<140){
+            ms=4;
+        }
+        else if(ms>140 && ms<160){
+            ms=3;
+        }
+        else if(ms>160 && ms<180){
+            ms=2;
+        }
+        else if(ms>180 && ms<=200){
+            ms=1;
+        }
+        console.log("spped");
+        console.log(ms);
+        return ms;
+    }
+    function sleep(ms) {
+        
+        
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    async function sort(n,m){
+        console.log(arr);
+        var mm= document.querySelectorAll(".ar");        
+        bubble(arr);
+        
+    }
+    function dis(){
+        console.log("Disable");
+        document.getElementById("bt").disabled = true;
+        document.getElementById("slider").disabled = true;
+    }
+    function en(){
+        console.log("enab;e");
+        document.getElementById("bt").disabled = false;
+        document.getElementById("slider").disabled = false;
+    }
+    function tr(i,j){
+        var mm= document.querySelectorAll(".ar");
+        mm[i].style.backgroundColor="yellow";
+        mm[j].style.backgroundColor="yellow";
+    }
+    function fl(i,j){
+        var mm= document.querySelectorAll(".ar");
+        mm[i].style.backgroundColor="red";
+        mm[j].style.backgroundColor="red";
+    }
+    
+    
+
+    async function bubble(arr){
+        
+        var mm= document.querySelectorAll(".ar");
+        var n=arr.length;
+        var h1;
+        var h2;
+        var i ;
+        var j;
+        var temp;
+        var spd=sp(n);
+        dis();
+        for (i=0;i<n;i++){
+            for (j=i;j<n;j++){
+                com(i,j);
+                if (arr[i]<=arr[j]){
+                    await sleep(spd);
+                    tr(i,j);
+                    await sleep(spd);
+                    nor(i,j);
+                }
+                else{
+                    await sleep(spd);
+                    fl(i,j);
+                    console.log(arr[i],arr[j]);
+                    temp=arr[i];
+                    arr[i]=arr[j];
+                    arr[j]=temp;
+                    mm[i].style.height=arr[i]+"px";
+                    //mm[i].innerHTML=arr[i];
+                    mm[j].style.height=arr[j]+"px";
+                    //mm[j].innerHTML=arr[j];
+                    console.log(arr[i],arr[j]);
+                    await sleep(spd);
+                    tr(i,j);
+                    await sleep(spd);
+                    nor(i,j);
+                    
+                }
+                mm[i].style.backgroundColor="purple";
+                await sleep(spd);
+
+            }
+            
+        }
+        
+        en();
+        await sleep(spd);
+       
+    }
+	
+</script>
+</body>
+</html>
