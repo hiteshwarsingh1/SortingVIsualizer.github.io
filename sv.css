@@ -6,7 +6,9 @@
     margin: auto;
     justify-content: center;
 }
+
 .ar{
+    
     background-color: limegreen;
     flex: 1;
     margin: 1px;                  
