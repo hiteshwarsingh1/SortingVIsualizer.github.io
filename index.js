@@ -29,7 +29,7 @@ for (i=0;i<slider1.value;i++){
     rect.setAttributeNS(null, 'height', hght);
     rect.setAttributeNS(null,"id", hght);
     rect.setAttributeNS(null, 'width', wid);
-    rect.setAttributeNS(null, 'fill', 'blue');
+    rect.setAttributeNS(null, 'fill', 'rgb(173, 24, 24)');
     document.getElementById('svgOne').appendChild(rect);
     }
 }
@@ -44,28 +44,37 @@ function pre_sort(n){
 }
 
 async function sort(){
-
+    dis();
     if(typ==1){
-    selection(arr);
+        
+        selection(arr);
+        
     }
     else if(typ==2){
         quicksort(arr,0,arr.length-1);
         console.log(arr);
+        
     }
     else if(typ==3){
         
         console.log(arr);
     }
     else if(typ==4){
+        
         console.log("hey");
         bubble(arr);
+        
     }
     else if(typ==5){
+        
         console.log("un",arr);
         await heapsort(arr,arr.length);
         console.log("heap:",arr);
+        en();
+        
     }
-
+    
+    
 }
 
 async function sleep(ms) {
@@ -73,14 +82,14 @@ async function sleep(ms) {
   }
 //selection sort***********************************************************
 async function selection(arr){
-    
+    dis();
     var all_rect= document.getElementsByTagName("rect");
     var n=arr.length;
     var i ;
     var j;
     var temp;
     var spd=10;
-    dis();
+   
     for (i=0;i<n;i++){
         for (j=i;j<n;j++){
             com(i,j);
@@ -118,13 +127,14 @@ async function selection(arr){
 }
 // bubble sort **********************************************************************
 async function bubble(arr){
+    dis();
     var all_rect= document.getElementsByTagName("rect");
     var n=arr.length;
     var i ;
     var j;
     var temp;
     var spd=10;
-    dis();
+    
     for (i=0;i<n;i++){
             for (j=n-1;j>i;j--){
             com(i,j);
@@ -208,7 +218,8 @@ async function part(arr ,low , high)
 
 
 async function quicksort( arr, low, high)
-{
+{   
+    dis();
     if(low<high)
     {
       
@@ -220,6 +231,7 @@ async function quicksort( arr, low, high)
         await quicksort(arr,low,pivot-1);
         await quicksort(arr,pivot+1,high);
     }
+    
 }
 //heap sort***************************************
 async function heapify(arr, s,i)
@@ -259,6 +271,7 @@ async function heapify(arr, s,i)
 
 async function heapsort(arr, s)
 {
+    dis();
     var all_rect= document.getElementsByTagName("rect");
     for (var i=(s/2)-1;i>=0;i--)
     {
@@ -278,6 +291,7 @@ async function heapsort(arr, s)
         await heapify(arr, i, 0);
         
     }   
+    en();
 }
 
 function nor(n,m){
@@ -307,12 +321,14 @@ function fls(i,j){
 
 function dis(){
     console.log("Disable");
-    document.getElementById("bt").disabled = true;
+    document.getElementsByClassName("dis").disabled = true;
+   
     document.getElementById("slider1").disabled = true;
 }
 
 function en(){
     console.log("enable");
-    document.getElementById("bt").disabled = false;
+    document.getElementsByClassName("dis").disabled = false;
+    
     document.getElementById("slider1").disabled = false;
 }
