@@ -11,7 +11,7 @@ function generate(){
         all[0].parentNode.removeChild(all[0]);
     }
 
-var wid=10;
+var wid=5;
 arr=[];//global arr
 svg.setAttribute("width", (slider1.value*wid)+(slider1.value*2));
 var i;
@@ -20,14 +20,14 @@ for (i=0;i<slider1.value;i++){
     
     var hght = Math.floor(Math.random() * (200 - 50 + 1)) + 50;
     
-    arr.push(hght);
+    arr.push(hght+100);
     pos=(i*(wid+2));
     
     var rect = document.createElementNS(svgns,'rect');
     rect.setAttributeNS(null, 'x',pos);
     rect.setAttributeNS(null, 'y', '50');
-    rect.setAttributeNS(null, 'height', hght);
-    rect.setAttributeNS(null,"id", hght);
+    rect.setAttributeNS(null, 'height', hght+100);
+    rect.setAttributeNS(null,"id", hght+100);
     rect.setAttributeNS(null, 'width', wid);
     rect.setAttributeNS(null, 'fill', 'rgb(173, 24, 24)');
     document.getElementById('svgOne').appendChild(rect);
@@ -45,10 +45,9 @@ function pre_sort(n){
 
 async function sort(){
     dis();
-    if(typ==1){
-        
+    
+    if(typ==1){        
         selection(arr);
-        
     }
     else if(typ==2){
         quicksort(arr,0,arr.length-1);
@@ -114,7 +113,7 @@ async function selection(arr){
                 nor(i,j);
                 
             }
-            all_rect[i].setAttributeNS(null,'fill','grey');
+            all_rect[i].setAttributeNS(null,'fill','rgb(173, 24, 24)');
             await sleep(spd);
 
         }
@@ -159,11 +158,11 @@ async function bubble(arr){
                 nor(j,j-1);
                 
             }
-            all_rect[i].setAttributeNS(null,'fill','grey');
+            all_rect[i].setAttributeNS(null,'fill','rgb(173, 24, 24)');
             await sleep(spd);
 
         }
-        all_rect[i].setAttributeNS(null,'fill','grey');
+        all_rect[i].setAttributeNS(null,'fill','rgb(173, 24, 24)');
 
     }
     
@@ -182,8 +181,10 @@ async function part(arr ,low , high)
     for(var i=low;i<high;i++)
     {   
         
+        all_rect[high].setAttributeNS(null,'fill','blue');
         if(arr[i]<pivot)
         {   
+            all_rect[i].setAttributeNS(null,'fill','yellow');
             s=s+1;
             
             var temp = arr[i]; 
@@ -193,19 +194,31 @@ async function part(arr ,low , high)
             await sleep(10);
             all_rect[i].setAttributeNS(null,'height',arr[i]);
             all_rect[s].setAttributeNS(null,'height',arr[s]);
+            await sleep(20);
+            all_rect[i].setAttributeNS(null,'fill','rgb(173, 24, 24)');
         }
         else{
             await sleep(10);
-            document.getElementById(arr[i]).setAttributeNS(null,'fill','blue');
+            all_rect[i].setAttributeNS(null,'fill','green');
+            await sleep(20);
             
+            all_rect[i].setAttributeNS(null,'fill','rgb(173, 24, 24)');
+    
         }
+        all_rect[high].setAttributeNS(null,'fill','rgb(173, 24, 24)');
         
     }
-
+    await sleep(50);
+    all_rect[high].setAttributeNS(null,'fill','purple');
+    all_rect[s+1].setAttributeNS(null,'fill','purple');
     
     var temp = arr[high]; 
     arr[high] = arr[s+1]; 
     arr[s+1] = temp;
+
+    await sleep(50);
+    all_rect[high].setAttributeNS(null,'fill','rgb(173, 24, 24)');
+    all_rect[s+1].setAttributeNS(null,'fill','rgb(173, 24, 24)');
 
     await sleep(10);
     all_rect[high].setAttributeNS(null,'height',arr[high]);
@@ -215,8 +228,6 @@ async function part(arr ,low , high)
     return s+1;
 
 }
-
-
 async function quicksort( arr, low, high)
 {   
     dis();
@@ -231,6 +242,7 @@ async function quicksort( arr, low, high)
         await quicksort(arr,low,pivot-1);
         await quicksort(arr,pivot+1,high);
     }
+    en();
     
 }
 //heap sort***************************************
@@ -242,24 +254,39 @@ async function heapify(arr, s,i)
     var right = 2*i + 2; 
 
     if (left<s && arr[left]>arr[largest])
-    {       
-        console.log(arr[left],arr[largest]);
+    {    
+        await sleep(10);
+        all_rect[left].setAttributeNS(null,'fill','blue');
+        all_rect[largest].setAttributeNS(null,'fill','blue');
         largest = left;
+        await sleep(10);
+        all_rect[left].setAttributeNS(null,'fill','rgb(173, 24, 24)');
+        all_rect[largest].setAttributeNS(null,'fill','rgb(173, 24, 24)');
     }
+    
   
     if (right<s && arr[right] > arr[largest])
     {
-        console.log(arr[right],arr[largest]);
+        await sleep(10);
+        all_rect[right].setAttributeNS(null,'fill','blue');
+        all_rect[largest].setAttributeNS(null,'fill','blue');
         largest = right;
+        await sleep(10);
+        all_rect[right].setAttributeNS(null,'fill','rgb(173, 24, 24)');
+        all_rect[largest].setAttributeNS(null,'fill','rgb(173, 24, 24)');
     }
     
     if (largest!=i) 
     {
-       
-        console.log(arr[i],arr[largest]);
+        await sleep(10);
+        all_rect[i].setAttributeNS(null,'fill','purple');
+        all_rect[largest].setAttributeNS(null,'fill','purple');
         var temp=arr[i];
         arr[i]=arr[largest];
         arr[largest]=temp;  //swapping for making maximum value as root
+        await sleep(10);
+        all_rect[i].setAttributeNS(null,'fill','rgb(173, 24, 24)');
+        all_rect[largest].setAttributeNS(null,'fill','rgb(173, 24, 24)');
         await sleep(10);
         all_rect[i].setAttributeNS(null,'height',arr[i]);
         await sleep(10);
@@ -278,11 +305,16 @@ async function heapsort(arr, s)
         await heapify(arr,s,i);
     }
     for (var i=s-1;i>=0;i--) 
-    {   
+    {
+        await sleep(20);
+        all_rect[i].setAttributeNS(null,'fill','purple');
+        all_rect[0].setAttributeNS(null,'fill','purple');
         var temp=arr[i];
         arr[i]=arr[0];
         arr[0]=temp;
-        
+        await sleep(20);
+        all_rect[i].setAttributeNS(null,'fill','rgb(173, 24, 24)');
+        all_rect[0].setAttributeNS(null,'fill','rgb(173, 24, 24)');
         await sleep(10);
         all_rect[i].setAttributeNS(null,'height',arr[i]);
         await sleep(10);
@@ -296,14 +328,14 @@ async function heapsort(arr, s)
 
 function nor(n,m){
     var all_rect= document.getElementsByTagName("rect");
-    all_rect[n].setAttributeNS(null,'fill','blue');
-    all_rect[m].setAttributeNS(null,'fill','blue');
+    all_rect[n].setAttributeNS(null,'fill','rgb(173, 24, 24)');
+    all_rect[m].setAttributeNS(null,'fill','rgb(173, 24, 24)');
 }
 
 function com(n,m){
     var all_rect= document.getElementsByTagName("rect");
-    all_rect[n].setAttributeNS(null,'fill','grey');
-    all_rect[m].setAttributeNS(null,'fill','grey');
+    all_rect[n].setAttributeNS(null,'fill','rgb(173, 24, 24)');
+    all_rect[m].setAttributeNS(null,'fill','rgb(173, 24, 24)');
 
 }
 
@@ -315,20 +347,23 @@ function tru(i,j){
 
 function fls(i,j){
     var all_rect= document.getElementsByTagName("rect");
-    all_rect[i].setAttributeNS(null,'fill','red');
-    all_rect[j].setAttributeNS(null,'fill','red');
+    all_rect[i].setAttributeNS(null,'fill','blue');
+    all_rect[j].setAttributeNS(null,'fill','blue');
 }
 
 function dis(){
     console.log("Disable");
-    document.getElementsByClassName("dis").disabled = true;
-   
+    document.getElementById("bt1").disabled = true;
+    document.getElementById("bt").disabled = true;
+    document.getElementById("bt_sort").disabled = true;
     document.getElementById("slider1").disabled = true;
+    
 }
 
 function en(){
     console.log("enable");
-    document.getElementsByClassName("dis").disabled = false;
-    
+    document.getElementById("bt1").disabled = false;
+    document.getElementById("bt").disabled = false;
+    document.getElementById("bt_sort").disabled = false;
     document.getElementById("slider1").disabled = false;
 }
