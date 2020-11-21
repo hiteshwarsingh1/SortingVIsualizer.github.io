@@ -44,9 +44,7 @@ function pre_sort(n){
 }
 
 async function sort(){
-    console.log(typ);
-    console.log(arr);
-  
+
     if(typ==1){
     selection(arr);
     }
@@ -64,7 +62,7 @@ async function sort(){
     }
     else if(typ==5){
         console.log("un",arr);
-        heapsort(arr,arr.length);
+        await heapsort(arr,arr.length);
         console.log("heap:",arr);
     }
 
@@ -176,70 +174,33 @@ async function part(arr ,low , high)
         
         if(arr[i]<pivot)
         {   
-            document.getElementById(arr[i]).setAttributeNS(null,'fill','red');
-            document.getElementById(pivot).setAttributeNS(null,'fill','red');
-
             s=s+1;
-            console.log(arr[s],arr[i]);
-            console.log(document.getElementById(arr[s]));
-            console.log(document.getElementById(arr[i]));
-
-            console.log("B:",arr);
-            
             
             var temp = arr[i]; 
             arr[i] = arr[s]; 
             arr[s] = temp;
-            
-            
-            console.log("HB:",document.getElementById(arr[s]).getAttributeNS(null,'height'));
-            console.log("HB:",document.getElementById(arr[i]).getAttributeNS(null,'height'));
-
-            // document.getElementById(arr[i]).setAttributeNS(null,'height',arr[s]);
-            // document.getElementById(arr[s]).setAttributeNS(null,'height',arr[i]);
-            // document.getElementById(arr[i]).setAttributeNS(null,'id',arr[s]);
-            // document.getElementById(arr[s]).setAttributeNS(null,'id',arr[i]);
-            await sleep(100);
+           
+            await sleep(10);
             all_rect[i].setAttributeNS(null,'height',arr[i]);
             all_rect[s].setAttributeNS(null,'height',arr[s]);
-
-            
-
-            console.log("HA:",document.getElementById(arr[s]).getAttributeNS(null,'height'));
-            console.log("HA:",document.getElementById(arr[i]).getAttributeNS(null,'height'));
-            
-            
-            console.log("A:",arr);
-            await sleep(200);
-            document.getElementById(arr[i]).setAttributeNS(null,'fill','blue');
-            document.getElementById(pivot).setAttributeNS(null,'fill','blue');
         }
         else{
-            await sleep(200);
-            document.getElementById(arr[i]).setAttributeNS(null,'fill','green');
-            document.getElementById(pivot).setAttributeNS(null,'fill','green');
-            await sleep(200);
+            await sleep(10);
             document.getElementById(arr[i]).setAttributeNS(null,'fill','blue');
-            document.getElementById(pivot).setAttributeNS(null,'fill','blue');
+            
         }
         
     }
-    console.log(arr);
-    
 
+    
     var temp = arr[high]; 
     arr[high] = arr[s+1]; 
     arr[s+1] = temp;
 
-    await sleep(100);
+    await sleep(10);
     all_rect[high].setAttributeNS(null,'height',arr[high]);
     all_rect[s+1].setAttributeNS(null,'height',arr[s+1]);
-    
-    await sleep(100);
-    
-
-    console.log(arr);
-    console.log("S:",s+1);
+   
     
     return s+1;
 
@@ -256,8 +217,8 @@ async function quicksort( arr, low, high)
         console.log("P:",pivot);
         
         
-        quicksort(arr,low,pivot-1);
-        quicksort(arr,pivot+1,high);
+        await quicksort(arr,low,pivot-1);
+        await quicksort(arr,pivot+1,high);
     }
 }
 //heap sort***************************************
@@ -268,52 +229,22 @@ async function heapify(arr, s,i)
     var left = 2*i + 1; 
     var right = 2*i + 2; 
 
-    
-        
     if (left<s && arr[left]>arr[largest])
-    {
-        
-        //await sleep(10); 
+    {       
+        console.log(arr[left],arr[largest]);
         largest = left;
-        //await sleep(10);
-        
-    
-}
-    
-
-    if (right<s && arr[right] > arr[largest]){
-        
-        //await sleep(10);
-        
+    }
+  
+    if (right<s && arr[right] > arr[largest])
+    {
+        console.log(arr[right],arr[largest]);
         largest = right;
-        //await sleep(10);
-        
+    }
     
-}
-    
- 
     if (largest!=i) 
     {
        
-
-        // var firstq=document.getElementById(arr[i]);
-        // var secondq=document.getElementById(arr[largest]);
-
-        // console.log("HB:",secondq.getAttributeNS(null,'height'),firstq.getAttributeNS(null,'height'));
-        // console.log("IDB:",secondq.getAttributeNS(null,'id'),firstq.getAttributeNS(null,'id'));
-
-        // var tempp=firstq.getAttributeNS(null,'height');
-        // firstq.setAttributeNS(null,'height',secondq.getAttributeNS(null,'height'));
-        // secondq.setAttributeNS(null,'height',tempp);
-
-        // var temppp=firstq.getAttributeNS(null,'id');
-        // firstq.setAttributeNS(null,'id',secondq.getAttributeNS(null,'id'));
-        // secondq.setAttributeNS(null,'id',temppp);
-
-        // console.log("HB:",secondq.getAttributeNS(null,'height'),firstq.getAttributeNS(null,'height'));
-        // console.log("IDB:",secondq.getAttributeNS(null,'id'),firstq.getAttributeNS(null,'id'));
-
-        console.log(all_rect[i].getAttributeNS(null,'height'),all_rect[largest].getAttributeNS(null,'height'));
+        console.log(arr[i],arr[largest]);
         var temp=arr[i];
         arr[i]=arr[largest];
         arr[largest]=temp;  //swapping for making maximum value as root
@@ -329,20 +260,23 @@ async function heapify(arr, s,i)
 async function heapsort(arr, s)
 {
     var all_rect= document.getElementsByTagName("rect");
-    for (var i=s/2-1;i>=0;i--)
+    for (var i=(s/2)-1;i>=0;i--)
     {
         await heapify(arr,s,i);
     }
-    for (var i=s-1;i>0;i--) 
+    for (var i=s-1;i>=0;i--) 
     {   
         var temp=arr[i];
         arr[i]=arr[0];
         arr[0]=temp;
+        
         await sleep(10);
         all_rect[i].setAttributeNS(null,'height',arr[i]);
         await sleep(10);
         all_rect[0].setAttributeNS(null,'height',arr[0]);
+
         await heapify(arr, i, 0);
+        
     }   
 }
 
