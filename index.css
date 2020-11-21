@@ -1,5 +1,8 @@
 body{
     margin: 0%;
+    font-family: 'Comic Sans MS, Comic Sans, cursive';
+    font-size: 50px;
+    background-color: black;
 }
 .bar{
     
@@ -11,15 +14,35 @@ body{
     justify-content: center;
     margin-left: 200;
 }
+button{
+    font-family: 'Comic Sans MS, Comic Sans, cursive';
+    font-size: 17px;
+    border:none;
+    background-color: rgb(173, 24, 24);
+    color: white;
+    border-radius:10px ;
+    margin:auto 0% ;
+    padding: 12px 10px;
+    margin-left: 1%;
+}
+button:hover{
+    background-color:rgb(190, 22, 22) ;
+}
+button:focus{
+    background-color: grey;
+    outline: none;
+}
 .header{
-    margin: 0%;
-    background-color: cadetblue;
+    background-color: black;
     display: flex;
     justify-content: center;
     height: 100px;
-    padding: 10px;
+    
 }
-#bt{
-    height: 30px;
-    margin-top: 30;
+#bt_sort{
+    margin-left: 5%;
+    padding: 12px 20px;
+}
+input[type='range' i]:left{
+    background-color: red;
 }
