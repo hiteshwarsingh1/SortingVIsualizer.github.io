@@ -5,14 +5,14 @@ body{
     background-color: black;
 }
 .bar{
+
     
-    width: 1200px;
-    height: 1000px;
-    padding: 0px 20px;
+    height: 500px;
+    padding: 0px 15px;
     display: flex;
-    margin-top: 0%;
+    margin: 0% auto;
     justify-content: center;
-    margin-left: 200;
+    
 }
 button{
     font-family: 'Comic Sans MS, Comic Sans, cursive';
@@ -29,8 +29,8 @@ button:hover{
     background-color:rgb(190, 22, 22) ;
 }
 button:focus{
-    background-color: grey;
     outline: none;
+    
 }
 .header{
     background-color: black;
