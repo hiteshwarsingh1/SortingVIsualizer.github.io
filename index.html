@@ -9,22 +9,18 @@
     </head>
 <body>
     <div class="header">
-        <button id="bt1" value='new_arr' onclick="generate()">Generate New Array</button>
+        <button id="bt1" value='new_arr' class="dis" onclick="generate()">Generate New Array</button>
         <input id="slider1" type="range" min="10" max="100" value="5" />
-        
-        <button id="bt" class="bubble" value='1' onclick="pre_sort(1)">Selection Sort</button>
-        <button id="bt" class="quick" value='2' onclick="pre_sort(2)">Quick Sort</button>
-        <button id="bt" class="merge" value='3' onclick="pre_sort(3)">Merge Sort</button>
-        <button id="bt" class="selection" value='4' onclick="pre_sort(4)">Bubble Sort</button>
-        <button id="bt" class="heap" value='5' onclick="pre_sort(5)">Heap Sort</button>
-
-        <button id="bt" value='sort' onclick="sort()">Sort</button>
+        <button id="bt" class="bubble dis" value='1' onclick="pre_sort(1)">Selection Sort</button>
+        <button id="bt" class="quick dis" value='2' onclick="pre_sort(2)">Quick Sort</button>
+        <button id="bt" class="selection dis" value='4' onclick="pre_sort(4)">Bubble Sort</button>
+        <button id="bt" class="heap dis" value='5' onclick="pre_sort(5)">Heap Sort</button>
+        <button id="bt_sort" class="dis" value='sort' onclick="sort()">Sort</button>
 
     </div>
     
     <div class="bar">
       <svg id="svgOne" width="50"> 
-
       </svg>
     </div>
     <script src="index.js"></script>
