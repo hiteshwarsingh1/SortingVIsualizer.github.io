@@ -1,4 +1,5 @@
 var slider1= document.getElementById('slider1');
+
 var svg= document.getElementById('svgOne');
 var svgns = "http://www.w3.org/2000/svg";
 
@@ -54,10 +55,7 @@ async function sort(){
         console.log(arr);
         
     }
-    else if(typ==3){
-        
-        console.log(arr);
-    }
+   
     else if(typ==4){
         
         console.log("hey");
@@ -182,6 +180,7 @@ async function part(arr ,low , high)
     {   
         
         all_rect[high].setAttributeNS(null,'fill','blue');
+        
         if(arr[i]<pivot)
         {   
             all_rect[i].setAttributeNS(null,'fill','yellow');
@@ -279,7 +278,7 @@ async function heapify(arr, s,i)
     if (largest!=i) 
     {
         await sleep(10);
-        all_rect[i].setAttributeNS(null,'fill','purple');
+        all_rect[i].setAttributeNS(null,'fill','purple');//same as com() fucntion
         all_rect[largest].setAttributeNS(null,'fill','purple');
         var temp=arr[i];
         arr[i]=arr[largest];
@@ -289,13 +288,10 @@ async function heapify(arr, s,i)
         all_rect[largest].setAttributeNS(null,'fill','rgb(173, 24, 24)');
         await sleep(10);
         all_rect[i].setAttributeNS(null,'height',arr[i]);
-        await sleep(10);
         all_rect[largest].setAttributeNS(null,'height',arr[largest]);
         await heapify(arr,s,largest);
     }
 }
-
-
 async function heapsort(arr, s)
 {
     dis();
@@ -334,8 +330,8 @@ function nor(n,m){
 
 function com(n,m){
     var all_rect= document.getElementsByTagName("rect");
-    all_rect[n].setAttributeNS(null,'fill','rgb(173, 24, 24)');
-    all_rect[m].setAttributeNS(null,'fill','rgb(173, 24, 24)');
+    all_rect[n].setAttributeNS(null,'fill','blue');
+    all_rect[m].setAttributeNS(null,'fill','blue');
 
 }
 
