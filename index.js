@@ -250,8 +250,8 @@ async function heapify(arr, s,i)
 {
     var all_rect= document.getElementsByTagName("rect");
     var largest = i; 
-    var left = 2*i + 1; 
-    var right = 2*i + 2; 
+    var left = (2*i) + 1; 
+    var right = (2*i) + 2; 
 
     if (left<s && arr[left]>arr[largest])
     {    
@@ -304,7 +304,7 @@ async function heapsort(arr, s)
     {
         await heapify(arr,s,i);
     }
-    for (var i=s-1;i>=0;i--) 
+    for (var i=s-1;i>0;i--) 
     {
         await sleep(20);
         all_rect[i].setAttributeNS(null,'fill','purple');
